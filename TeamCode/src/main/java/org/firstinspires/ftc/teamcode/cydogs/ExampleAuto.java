@@ -19,9 +19,9 @@ public class ExampleAuto extends OpMode {
     private Follower follower;
 
     private final PoseFactory p = PoseFactory.degrees();
-    private final Pose startPose = p.of(24, 24, 0);
-    private final Pose park = p.of(48, 48, 90);
-    private final Pose controlPose = p.of(36, 60, 45);
+    private final Pose startPose = p.of(54.275, 7.875, 90);
+    private final Pose park = p.of(6.5, 96, 90);
+    private final Pose controlPose = p.of(24, 48, 45);
 
     private Path park() {
         return line(startPose, park).linear(startPose, park);
