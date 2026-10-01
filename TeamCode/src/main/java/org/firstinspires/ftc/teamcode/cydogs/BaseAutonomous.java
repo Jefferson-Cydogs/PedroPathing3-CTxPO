@@ -27,7 +27,7 @@ public class BaseAutonomous extends LinearOpMode {
 
     private final Pose start = poseFactory.of(54.275, 7.875, 90);
     private final Pose initialScore = poseFactory.of(60, 12, 90);
-    private final Pose collectfromgarden = poseFactory.of(8, 11, 90);
+    private final Pose collectfromgarden = poseFactory.of(12, 11, 90);
     private final Pose collectfromgardenControl1 = poseFactory.of(24, 18, 90);
     private final Pose scoreoppositehive = poseFactory.of(60, 125, 270);
     private final Pose scoreoppositehiveControl1 = poseFactory.of(24, 96, 225);
