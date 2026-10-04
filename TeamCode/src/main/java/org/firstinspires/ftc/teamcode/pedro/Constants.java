@@ -48,6 +48,12 @@ public class Constants {
 
     public static ForesightConfig foresightConfig = new ForesightConfig(
             c -> {
+                /* // End Constraints, with default values. Only enable if follower is taking too long to finish paths.
+                c.parametricTConstraint.set(0.025);
+                c.velocityConstraint.set(0.1);
+                c.translationalConstraint.set(0.1);
+                c.headingConstraint.set(0.007);
+                c.timeoutConstraint.set(100.0);*/
                 Controller primaryTranslationalForward = Controller.proportional(0.25124910091264396);
                 Controller secondaryTranslationalForward = Controller.proportional(0.09282982928760126);
                 Controller primaryTranslationalLateral = Controller.proportional(0.3711983132376161);

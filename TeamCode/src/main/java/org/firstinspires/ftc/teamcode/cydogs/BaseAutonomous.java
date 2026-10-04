@@ -25,12 +25,24 @@ public class BaseAutonomous extends LinearOpMode {
 
     private final PoseFactory poseFactory = PoseFactory.degrees();
 
+    // Poses
     private final Pose start = poseFactory.of(54.275, 7.875, 90);
     private final Pose initialScore = poseFactory.of(60, 12, 90);
     private final Pose collectfromgarden = poseFactory.of(12, 11, 90);
     private final Pose collectfromgardenControl1 = poseFactory.of(24, 18, 90);
     private final Pose scoreoppositehive = poseFactory.of(60, 125, 270);
     private final Pose scoreoppositehiveControl1 = poseFactory.of(24, 96, 225);
+
+    // Path methods
+    public Path initialScore() {
+        return Paths.line(start, initialScore).linear(start, initialScore);
+    }
+    public Path collectfromgarden() {
+        return Paths.curve(initialScore, collectfromgardenControl1, collectfromgarden).linear(initialScore, collectfromgarden);
+    }
+    public Path scoreoppositehive() {
+        return Paths.curve(collectfromgarden, scoreoppositehiveControl1, scoreoppositehive).linear(collectfromgarden, scoreoppositehive);
+    }
 
     // Autonomous routine
     public Command autoRoutine() {
@@ -66,17 +78,5 @@ public class BaseAutonomous extends LinearOpMode {
 
             telemetry.update();
         }
-    }
-
-    public Path initialScore() {
-        return Paths.line(start, initialScore).linear(start, initialScore);
-    }
-
-    public Path collectfromgarden() {
-        return Paths.curve(initialScore, collectfromgardenControl1, collectfromgarden).linear(initialScore, collectfromgarden);
-    }
-
-    public Path scoreoppositehive() {
-        return Paths.curve(collectfromgarden, scoreoppositehiveControl1, scoreoppositehive).linear(collectfromgarden, scoreoppositehive);
     }
 }
