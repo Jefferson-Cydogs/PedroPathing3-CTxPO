@@ -34,12 +34,12 @@ public class Course1 extends LinearOpMode {
     private final Pose shoot2 = poseFactory.of(59, 126.7, -90);
     private final Pose shoot2Control1 = poseFactory.of(24.043, 109.375, 0);
     private final Pose flowerCollectStart = poseFactory.of(59, 126.7, -90);
-    private final Pose flowerCollect = poseFactory.of(50.1287, 128.7524, -90);
+    private final Pose flowerCollect = poseFactory.of(50.1287, 124.7524, -90);
     private final Pose flowerCollectControl1 = poseFactory.of(47.7961, 126.7883, 0);
-    private final Pose shoot3Start = poseFactory.of(50.1287, 132.7524, -90);
+    private final Pose shoot3Start = poseFactory.of(50.1287, 124.7524, -90);
     private final Pose shoot3 = poseFactory.of(59, 126.6643, -90);
     private final Pose parkStart = poseFactory.of(59, 126.6643, -90);
-    private final Pose park = poseFactory.of(8.4, 94.5, 0);
+    private final Pose park = poseFactory.of(11.4, 94.5, 0);
 
     // Autonomous routine
     public Command autoRoutine() {
