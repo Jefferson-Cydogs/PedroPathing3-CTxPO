@@ -22,7 +22,7 @@ public class TestBallTrackerTeleop extends LinearOpMode {
         right.setDirection(DcMotorSimple.Direction.REVERSE);
 
         BallTracker detector = new BallTracker(
-                hardwareMap, "huskyLens", BallTracker.Alliance.BLUE);
+                hardwareMap, "huskylens", BallTracker.Alliance.BLUE);
 
         // Pick alliance during init
         while (!isStarted() && !isStopRequested()) {
