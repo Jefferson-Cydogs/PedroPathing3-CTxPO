@@ -13,12 +13,14 @@ import static com.pedropathing.ivy.groups.Groups.sequential;
 import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
 import org.firstinspires.ftc.teamcode.pedro.Constants;
+import org.firstinspires.ftc.teamcode.cydogs.basedevices.BaseLED;
 
 @Autonomous(name = "Course 1", group = "Autonomous")
 public class Course1 extends LinearOpMode {
 
+    private BaseLED statusLED;
+    //statusLED = new BaseLED(hardwareMap, "backLED");
     private Follower follower;
 
     private final PoseFactory poseFactory = PoseFactory.degrees();
@@ -62,17 +64,28 @@ public class Course1 extends LinearOpMode {
 
     // Autonomous routine
     public Command autoRoutine() {
+        statusLED = new BaseLED(hardwareMap, "backLED");
         return sequential(
                 follow(follower, shoot()),
+                instant(() -> statusLED.setGreen()),
                 waitMs(1000),
+                instant(() -> statusLED.setOff()),
                 follow(follower, gardenCollect()),
+                instant(() -> statusLED.setPurple()),
                 waitMs(1500),
+                instant(() -> statusLED.setOff()),
                 follow(follower, shoot2()),
+                instant(() -> statusLED.setGreen()),
                 waitMs(1000),
+                instant(() -> statusLED.setOff()),
                 follow(follower, flowerCollect()),
+                instant(() -> statusLED.setPurple()),
                 waitMs(1500),
+                instant(() -> statusLED.setOff()),
                 follow(follower, shoot3()),
+                instant(() -> statusLED.setGreen()),
                 waitMs(1000),
+                instant(() -> statusLED.setOff()),
                 follow(follower, park())
         );
     }
