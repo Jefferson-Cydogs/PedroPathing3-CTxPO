@@ -1,9 +1,7 @@
 package org.firstinspires.ftc.teamcode.cydogs.TestCourses;
 
-import static com.pedropathing.api.Paths.*;
-import com.pedropathing.api.Paths;
-
 import com.pedropathing.api.PoseFactory;
+import static com.pedropathing.api.Paths.*;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
 import com.pedropathing.paths.Path;
@@ -25,6 +23,7 @@ public class Course2 extends LinearOpMode {
 
     private final PoseFactory poseFactory = PoseFactory.degrees();
 
+    // Poses
     private final Pose start = poseFactory.of(58.3239, 2.0611, 90);
     private final Pose shoot = poseFactory.of(58.2267, 15.7509, 90);
     private final Pose colectfromGardenStart = poseFactory.of(58.2267, 15.7509, 90);
@@ -39,14 +38,39 @@ public class Course2 extends LinearOpMode {
     private final Pose parkStart = poseFactory.of(26.6907, 21.6305, 90);
     private final Pose park = poseFactory.of(5.4051, 91.6807, 0);
 
+    // Path methods
+    public Path shoot() {
+        return line(start, shoot).linear(start, shoot);
+    }
+    public Path collectFromGarden() {
+        return curve(colectfromGardenStart, colectfromGardenControl1, colectfromGarden).linear(colectfromGardenStart, colectfromGarden);
+    }
+    public Path shoot2() {
+        return line(shoot2Start, shoot2).linear(shoot2Start, shoot2);
+    }
+    public Path collectFromflower() {
+        return line(flowerStart, flower).linear(flowerStart, flower);
+    }
+    public Path shoot3() {
+        return line(shoot3Start, shoot3).linear(shoot3Start, shoot3);
+    }
+    public Path park() {
+        return line(parkStart, park).linear(parkStart, park);
+    }
+
     // Autonomous routine
     public Command autoRoutine() {
         return sequential(
                 follow(follower, shoot()),
-                follow(follower, colectfromGarden()),
+                waitMs(1000),
+                follow(follower, collectFromGarden()),
+                waitMs(1500),
                 follow(follower, shoot2()),
-                follow(follower, flower()),
+                waitMs(1000),
+                follow(follower, collectFromflower()),
+                waitMs(1500),
                 follow(follower, shoot3()),
+                waitMs(1000),
                 follow(follower, park())
         );
     }
@@ -78,27 +102,4 @@ public class Course2 extends LinearOpMode {
         }
     }
 
-    public Path shoot() {
-        return Paths.line(start, shoot).linear(start, shoot);
-    }
-
-    public Path colectfromGarden() {
-        return Paths.curve(colectfromGardenStart, colectfromGardenControl1, colectfromGarden).linear(colectfromGardenStart, colectfromGarden);
-    }
-
-    public Path shoot2() {
-        return Paths.line(shoot2Start, shoot2).linear(shoot2Start, shoot2);
-    }
-
-    public Path flower() {
-        return Paths.line(flowerStart, flower).linear(flowerStart, flower);
-    }
-
-    public Path shoot3() {
-        return Paths.line(shoot3Start, shoot3).linear(shoot3Start, shoot3);
-    }
-
-    public Path park() {
-        return Paths.line(parkStart, park).linear(parkStart, park);
-    }
 }

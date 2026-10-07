@@ -1,9 +1,7 @@
 package org.firstinspires.ftc.teamcode.cydogs.TestCourses;
 
-import static com.pedropathing.api.Paths.*;
-import com.pedropathing.api.Paths;
-
 import com.pedropathing.api.PoseFactory;
+import static com.pedropathing.api.Paths.*;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
 import com.pedropathing.paths.Path;
@@ -25,6 +23,7 @@ public class Course3 extends LinearOpMode {
 
     private final PoseFactory poseFactory = PoseFactory.degrees();
 
+    //Poses
     private final Pose start = poseFactory.of(60.6478, 140.4626, 270);
     private final Pose shoot1 = poseFactory.of(60.1314, 125.083, 270);
     private final Pose flowerStart = poseFactory.of(60.1314, 125.083, 270);
@@ -33,11 +32,24 @@ public class Course3 extends LinearOpMode {
     private final Pose parkStart = poseFactory.of(46.0046, 130.5055, 270);
     private final Pose park = poseFactory.of(3.6204, 121.1068, 360);
 
+    // Path methods
+    public Path shoot1() {
+        return line(start, shoot1).linear(start, shoot1);
+    }
+    public Path collectFromFlower() {
+        return curve(flowerStart, flowerControl1, flower).linear(flowerStart, flower);
+    }
+    public Path park() {
+        return line(parkStart, park).linear(parkStart, park);
+    }
+
     // Autonomous routine
     public Command autoRoutine() {
         return sequential(
                 follow(follower, shoot1()),
-                follow(follower, flower()),
+                waitMs(1000),
+                follow(follower, collectFromFlower()),
+                waitMs(1500),
                 follow(follower, park())
         );
     }
@@ -69,15 +81,4 @@ public class Course3 extends LinearOpMode {
         }
     }
 
-    public Path shoot1() {
-        return Paths.line(start, shoot1).linear(start, shoot1);
-    }
-
-    public Path flower() {
-        return Paths.curve(flowerStart, flowerControl1, flower).linear(flowerStart, flower);
-    }
-
-    public Path park() {
-        return Paths.line(parkStart, park).linear(parkStart, park);
-    }
 }
