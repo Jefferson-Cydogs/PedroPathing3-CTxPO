@@ -18,9 +18,7 @@ import org.firstinspires.ftc.teamcode.cydogs.basedevices.BaseLED;
 
 @Autonomous(name = "Course 1", group = "Autonomous")
 public class Course1 extends LinearOpMode {
-
     private BaseLED statusLED;
-    //statusLED = new BaseLED(hardwareMap, "backLED");
     private Follower follower;
 
     private final PoseFactory poseFactory = PoseFactory.degrees();
