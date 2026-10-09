@@ -16,11 +16,12 @@ import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.cydogs.basedevices.BaseLED;
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 
 @Autonomous(name = "Course 4", group = "Autonomous")
 public class Course4 extends LinearOpMode {
-
+    private BaseLED statusLED;
     private Follower follower;
 
     private final PoseFactory poseFactory = PoseFactory.degrees();
@@ -39,11 +40,24 @@ public class Course4 extends LinearOpMode {
 
     // Autonomous routine
     public Command autoRoutine() {
+        statusLED = new BaseLED(hardwareMap, "backLED");
         return sequential(
                 follow(follower, waitthenshoot()),
+                instant(() -> statusLED.setGreen()),
+                waitMs(3500),
+                instant(() -> statusLED.setOff()),
                 follow(follower, collectfromclosestflower()),
+                instant(() -> statusLED.setPurple()),
+                waitMs(1500),
+                instant(() -> statusLED.setOff()),
                 follow(follower, gotoferthestflower()),
+                instant(() -> statusLED.setPurple()),
+                waitMs(1500),
+                instant(() -> statusLED.setOff()),
                 follow(follower, shootcolectformgarden()),
+                instant(() -> statusLED.setGreen()),
+                waitMs(8000),
+                instant(() -> statusLED.setOff()),
                 follow(follower, park())
         );
     }
