@@ -54,7 +54,7 @@ public class Course3 extends LinearOpMode {
                 waitMs(1000),
                 instant(() -> statusLED.setOff()),
                 follow(follower, collectFromFlower()),
-                instant(() -> statusLED.setPurple()),
+                instant(() -> statusLED.setViolet()),
                 waitMs(1500),
                 instant(() -> statusLED.setOff()),
                 follow(follower, park())

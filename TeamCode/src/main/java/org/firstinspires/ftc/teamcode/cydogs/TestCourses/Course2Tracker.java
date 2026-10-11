@@ -149,7 +149,7 @@ public class Course2Tracker extends LinearOpMode {
         return sequential(
                 instant(() -> {
                     statusLedFromLock = false;
-                    statusLED.setPurple();
+                    statusLED.setViolet();
                 }),
                 waitMs(1500),
                 instant(() -> {
@@ -192,7 +192,7 @@ public class Course2Tracker extends LinearOpMode {
 
         statusLED = new BaseLED(hardwareMap, LED_NAME);
         eyes = new TagSight(hardwareMap, WEBCAM_NAME, null); // null = any tag; or "red" / "blue"
-        pan = new CameraPan(this, PAN_SERVO_NAME);
+        pan = new CameraPan(this, "turretTracker");
         pan.initialize();
 
         waitForStart();
