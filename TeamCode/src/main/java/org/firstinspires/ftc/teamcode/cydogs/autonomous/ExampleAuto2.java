@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.cydogs;
+package org.firstinspires.ftc.teamcode.cydogs.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
