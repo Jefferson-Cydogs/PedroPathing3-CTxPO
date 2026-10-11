@@ -72,6 +72,7 @@ public class Course2 extends LinearOpMode {
                 waitMs(1500),
                 instant(() -> statusLED.setOff()),
                 follow(follower, shoot2()),
+                waitMs(8000),
                 instant(() -> statusLED.setGreen()),
                 waitMs(1000),
                 instant(() -> statusLED.setOff()),

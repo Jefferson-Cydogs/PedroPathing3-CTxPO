@@ -14,11 +14,12 @@ import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.cydogs.basedevices.BaseLED;
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 
 @Autonomous(name = "Course3", group = "Autonomous")
 public class Course3 extends LinearOpMode {
-
+    private BaseLED statusLED;
     private Follower follower;
 
     private final PoseFactory poseFactory = PoseFactory.degrees();
@@ -27,10 +28,10 @@ public class Course3 extends LinearOpMode {
     private final Pose start = poseFactory.of(60.6478, 140.4626, 270);
     private final Pose shoot1 = poseFactory.of(60.1314, 125.083, 270);
     private final Pose flowerStart = poseFactory.of(60.1314, 125.083, 270);
-    private final Pose flower = poseFactory.of(46.0046, 130.5055, 270);
+    private final Pose flower = poseFactory.of(47.5, 128.875, 270);
     private final Pose flowerControl1 = poseFactory.of(47.8983, 112.5803, 0);
-    private final Pose parkStart = poseFactory.of(46.0046, 130.5055, 270);
-    private final Pose park = poseFactory.of(3.6204, 121.1068, 360);
+    private final Pose parkStart = poseFactory.of(47.5, 128.875, 270);
+    private final Pose park = poseFactory.of(8.875, 121.1068, 360);
 
     // Path methods
     public Path shoot1() {
@@ -45,11 +46,17 @@ public class Course3 extends LinearOpMode {
 
     // Autonomous routine
     public Command autoRoutine() {
+        statusLED = new BaseLED(hardwareMap, "backLED");
         return sequential(
                 follow(follower, shoot1()),
+                waitMs(4500),
+                instant(() -> statusLED.setGreen()),
                 waitMs(1000),
+                instant(() -> statusLED.setOff()),
                 follow(follower, collectFromFlower()),
+                instant(() -> statusLED.setPurple()),
                 waitMs(1500),
+                instant(() -> statusLED.setOff()),
                 follow(follower, park())
         );
     }

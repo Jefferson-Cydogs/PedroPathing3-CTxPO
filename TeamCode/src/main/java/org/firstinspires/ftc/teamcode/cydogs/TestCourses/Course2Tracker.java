@@ -38,7 +38,7 @@ public class Course2Tracker extends LinearOpMode {
 
     // Match robot config
     private static final String WEBCAM_NAME = "Webcam 1";
-    private static final String PAN_SERVO_NAME = "cameraPan";
+    private static final String PAN_SERVO_NAME = "turretTracker";
     private static final String LED_NAME = "backLED";
 
     // Aiming
