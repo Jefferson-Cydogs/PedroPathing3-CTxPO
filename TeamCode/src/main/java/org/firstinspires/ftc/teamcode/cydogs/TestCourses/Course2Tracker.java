@@ -73,24 +73,19 @@ public class Course2Tracker extends LinearOpMode {
     public Path shoot() {
         return line(start, shoot).linear(start, shoot);
     }
-
     public Path collectFromGarden() {
         return curve(colectfromGardenStart, colectfromGardenControl1, colectfromGarden)
                 .linear(colectfromGardenStart, colectfromGarden);
     }
-
     public Path shoot2() {
         return line(shoot2Start, shoot2).linear(shoot2Start, shoot2);
     }
-
     public Path collectFromflower() {
         return line(flowerStart, flower).linear(flowerStart, flower);
     }
-
     public Path shoot3() {
         return line(shoot3Start, shoot3).linear(shoot3Start, shoot3);
     }
-
     public Path park() {
         return line(parkStart, park).linear(parkStart, park);
     }
@@ -192,7 +187,7 @@ public class Course2Tracker extends LinearOpMode {
 
         statusLED = new BaseLED(hardwareMap, LED_NAME);
         eyes = new TagSight(hardwareMap, WEBCAM_NAME, null); // null = any tag; or "red" / "blue"
-        pan = new CameraPan(this, "turretTracker");
+        pan = new CameraPan(this, PAN_SERVO_NAME);
         pan.initialize();
 
         waitForStart();
